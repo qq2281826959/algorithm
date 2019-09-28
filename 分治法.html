@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分治法</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 分治法的精髓
+    // 1.分:将问题分解为规模更小的子问题;
+    // 2.治:将这些规模的子问题逐个解决;
+    // 3.合:将已解决的子问题合并,最终得出母问题的解;
+    //二分搜索
+    function binarySearch(goalStr,arrStr,minStr,maxStr){
+        if(minStr<=maxStr) {
+            if (arrStr[minStr] === goalStr) {
+                return minStr;
+            }
+            if (arrStr[maxStr] === goalStr) {
+                return maxStr;
+            }
+            var middle = Math.ceil((minStr + maxStr) / 2);
+            if (arrStr[middle] === goalStr) {
+                return middle;
+            }
+            else if (arrStr[middle] < goalStr) {
+                binarySearch(goalStr, arrStr, middle + 1, maxStr);
+            }
+            else if (arrStr[middle] > goalStr) {
+                binarySearch(goalStr, arrStr, minStr, middle - 1);
+            }
+            return false;
+        }
+    }
+    //简单数据测试
+    var arr=[1,2,3,4,6,7];
+    document.write(binarySearch(5,arr,0,arr.length-1));
+</script>
+</body>
+</html>
